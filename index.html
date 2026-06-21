@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinyl Groove — Disques Vinyles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --ink: #1A1510;
+    --warm: #C8A96E;
+    --accent: #B85C38;
+    --muted: #6B5F4E;
+    --groove: #2C2018;
+    --light: #EDE7D9;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: var(--ink);
+    padding: 0 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    border-bottom: 2px solid var(--warm);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+  }
+
+  .logo span { color: var(--warm); }
+
+  nav { display: flex; gap: 2.5rem; }
+  nav a {
+    color: var(--cream); text-decoration: none;
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    opacity: 0.7; transition: opacity 0.2s;
+  }
+  nav a:hover { opacity: 1; }
+
+  .header-contact {
+    font-size: 0.65rem; color: var(--warm);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    margin-top: 64px;
+    min-height: calc(100vh - 64px);
+    background: var(--groove);
+    display: grid; grid-template-columns: 1fr 1fr;
+    overflow: hidden; position: relative;
+  }
+
+  .hero-text {
+    padding: 6rem 5rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--warm); margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic; color: var(--warm);
+    display: block;
+  }
+
+  .hero-sub {
+    color: #9A8E7A; font-size: 0.85rem;
+    line-height: 1.8; max-width: 36ch;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    background: var(--warm); color: var(--ink);
+    text-decoration: none; padding: 0.9rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; font-weight: 400;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transition: background 0.2s, transform 0.15s;
+    width: fit-content;
+  }
+  .btn-primary:hover { background: #D9B87F; transform: translateY(-1px); }
+  .btn-primary::after { content: '→'; font-size: 1rem; }
+
+  .hero-visual {
+    position: relative; display: flex;
+    align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Animated vinyl disc */
+  .vinyl-disc {
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: conic-gradient(
+      #1a1510 0deg 5deg,
+      #2a2018 5deg 10deg,
+      #1a1510 10deg 15deg,
+      #2a2018 15deg 20deg,
+      #1a1510 20deg 25deg,
+      #2a2018 25deg 30deg,
+      #1a1510 30deg 35deg,
+      #2a2018 35deg 40deg,
+      #1a1510 40deg 45deg,
+      #2a2018 45deg 50deg,
+      #1a1510 50deg 55deg,
+      #2a2018 55deg 60deg,
+      #1a1510 60deg 65deg,
+      #2a2018 65deg 70deg,
+      #1a1510 70deg 75deg,
+      #2a2018 75deg 80deg,
+      #1a1510 80deg 85deg,
+      #2a2018 85deg 90deg,
+      #1a1510 90deg 360deg
+    );
+    box-shadow:
+      0 0 0 8px #111,
+      0 0 0 12px #2a2018,
+      0 0 60px rgba(0,0,0,0.8),
+      inset 0 0 80px rgba(0,0,0,0.5);
+    animation: spin 6s linear infinite;
+    position: relative;
+  }
+
+  .vinyl-disc::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent) 0%, #8B3A20 100%);
+    box-shadow: 0 0 0 3px #1a1510, 0 0 0 5px #3a2010;
+    z-index: 2;
+  }
+
+  .vinyl-disc::after {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--ink);
+    z-index: 3;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .vinyl-glow {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900; line-height: 1.1;
+  }
+
+  .section-header .count {
+    font-size: 0.7rem; letter-spacing: 0.12em;
+    color: var(--muted); text-transform: uppercase;
+    border-left: 1px solid var(--warm); padding-left: 1.5rem;
+  }
+
+  /* ── GENRES BAR ── */
+  .genres-section {
+    padding: 2.5rem 5rem;
+    background: var(--ink);
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto;
+  }
+
+  .genre-btn {
+    border: none; background: none; cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #6B5F4E; padding: 0.5rem 1.5rem;
+    border-right: 1px solid #2C2018;
+    transition: color 0.2s; white-space: nowrap;
+  }
+  .genre-btn:first-child { padding-left: 0; }
+  .genre-btn:hover, .genre-btn.active { color: var(--warm); }
+  .genre-btn.active {
+    position: relative;
+  }
+  .genre-btn.active::after {
+    content: ''; position: absolute;
+    bottom: -2px; left: 0; right: 0; height: 2px;
+    background: var(--warm);
+  }
+
+  /* ── GRID ── */
+  .catalogue {
+    padding: 5rem 5rem;
+    background: var(--cream);
+  }
+
+  .vinyl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+
+  .vinyl-card {
+    cursor: pointer;
+    transition: transform 0.25s;
+    position: relative;
+  }
+
+  .vinyl-card:hover { transform: translateY(-4px); }
+  .vinyl-card:hover .card-img-wrap::after { opacity: 1; }
+  .vinyl-card:hover .quick-action { opacity: 1; transform: translateY(0); }
+
+  .card-img-wrap {
+    position: relative; overflow: hidden;
+    background: var(--groove);
+    aspect-ratio: 1;
+  }
+
+  .card-img-wrap::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(26,21,16,0.4);
+    opacity: 0; transition: opacity 0.25s;
+  }
+
+  .card-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.4s;
+  }
+
+  .vinyl-card:hover .card-img-wrap img { transform: scale(1.04); }
+
+  .card-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--accent); color: var(--cream);
+    font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.25rem 0.6rem; z-index: 2;
+  }
+
+  .quick-action {
+    position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%) translateY(8px);
+    background: var(--warm); color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.55rem 1.2rem; white-space: nowrap;
+    opacity: 0; transition: all 0.25s; z-index: 3;
+  }
+
+  .card-info { padding: 1.25rem 0 0; }
+
+  .card-info .artist {
+    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--warm); margin-bottom: 0.3rem;
+  }
+
+  .card-info .album {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    line-height: 1.2; margin-bottom: 0.5rem;
+  }
+
+  .card-info .meta {
+    font-size: 0.65rem; color: var(--muted);
+    display: flex; gap: 1rem; align-items: center;
+  }
+
+  .card-info .price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 900;
+    color: var(--ink); margin-left: auto;
+  }
+
+  .card-info .condition {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+  }
+
+  .condition-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    display: inline-block;
+  }
+  .cond-mint { background: #4CAF50; }
+  .cond-vg { background: var(--warm); }
+  .cond-good { background: #FF9800; }
+
+  /* ── FEATURED ── */
+  .featured {
+    padding: 0 5rem 6rem;
+    background: var(--cream);
+  }
+
+  .featured-card {
+    display: grid; grid-template-columns: 1fr 1fr;
+    background: var(--groove);
+    overflow: hidden;
+    min-height: 480px;
+  }
+
+  .featured-img {
+    position: relative; overflow: hidden;
+  }
+
+  .featured-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+
+  .featured-content {
+    padding: 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  .featured-eyebrow {
+    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--warm); margin-bottom: 1.5rem;
+  }
+
+  .featured-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 900; line-height: 1.1;
+    color: var(--cream); margin-bottom: 0.5rem;
+  }
+
+  .featured-artist {
+    font-size: 0.8rem; color: #9A8E7A; letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-desc {
+    font-size: 0.8rem; color: #7A6E5A;
+    line-height: 1.8; margin-bottom: 2.5rem;
+    max-width: 38ch;
+  }
+
+  .featured-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900;
+    color: var(--cream); margin-bottom: 2rem;
+  }
+
+  .featured-price span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--muted);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-left: 0.5rem;
+  }
+
+  /* ── ABOUT / CONTACT ── */
+  .about {
+    background: var(--ink);
+    padding: 6rem 5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+  }
+
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 900;
+    color: var(--cream); margin-bottom: 1.5rem; line-height: 1.1;
+  }
+
+  .about-text p {
+    font-size: 0.82rem; color: #9A8E7A;
+    line-height: 1.9; margin-bottom: 1rem;
+  }
+
+  .about-contact h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--cream); margin-bottom: 2rem;
+  }
+
+  .contact-item {
+    display: flex; flex-direction: column; gap: 0.3rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid #2C2018;
+  }
+
+  .contact-item:first-of-type { border-top: 1px solid #2C2018; }
+
+  .contact-label {
+    font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--warm);
+  }
+
+  .contact-value {
+    font-size: 0.9rem; color: var(--cream);
+    text-decoration: none;
+  }
+
+  .contact-value:hover { color: var(--warm); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--groove);
+    padding: 2rem 5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid #2C2018;
+  }
+
+  footer .logo {
+    font-size: 1.1rem;
+  }
+
+  footer p {
+    font-size: 0.65rem; color: #4A3E2E;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(10,8,5,0.85);
+    align-items: center; justify-content: center;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--cream);
+    max-width: 680px; width: 90%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+
+  .modal-content { padding: 2.5rem; }
+
+  .modal-artist {
+    font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--warm); margin-bottom: 0.5rem;
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 900; line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .modal-meta {
+    font-size: 0.7rem; color: var(--muted);
+    margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;
+  }
+
+  .modal-desc {
+    font-size: 0.78rem; color: var(--muted);
+    line-height: 1.8; margin-bottom: 2rem;
+  }
+
+  .modal-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 900;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--ink); border: none; cursor: pointer;
+    color: var(--cream); width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; z-index: 10;
+  }
+
+  .modal-close:hover { background: var(--accent); }
+
+  .btn-contact {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    background: var(--ink); color: var(--cream);
+    text-decoration: none; padding: 0.8rem 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: background 0.2s; width: 100%; justify-content: center;
+    border: none; cursor: pointer;
+  }
+
+  .btn-contact:hover { background: var(--accent); }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--warm); }
+
+  @media (max-width: 900px) {
+    header { padding: 0 1.5rem; }
+    nav { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .hero-text { padding: 4rem 2rem; }
+    .catalogue { padding: 4rem 1.5rem; }
+    .featured { padding: 0 1.5rem 4rem; }
+    .featured-card { grid-template-columns: 1fr; }
+    .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+    .genres-section { padding: 1.5rem; }
+    .modal { grid-template-columns: 1fr; }
+    .modal-img { height: 220px; }
+  }
+
+  /* ── PANIER ── */
+  .cart-btn {
+    position: relative;
+    background: none; border: none; cursor: pointer;
+    color: var(--cream); display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #2C2018;
+    transition: border-color 0.2s;
+  }
+  .cart-btn:hover { border-color: var(--warm); color: var(--warm); }
+
+  .cart-count {
+    background: var(--accent); color: var(--cream);
+    font-size: 0.6rem; font-weight: 700;
+    width: 18px; height: 18px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    line-height: 1;
+  }
+
+  .cart-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(10,8,5,0.75);
+    justify-content: flex-end;
+  }
+  .cart-overlay.open { display: flex; }
+
+  .cart-panel {
+    background: var(--cream);
+    width: 420px; max-width: 100%;
+    height: 100%; overflow-y: auto;
+    display: flex; flex-direction: column;
+    box-shadow: -8px 0 40px rgba(0,0,0,0.4);
+  }
+
+  .cart-header {
+    background: var(--ink); color: var(--cream);
+    padding: 1.5rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 2px solid var(--warm);
+    position: sticky; top: 0; z-index: 2;
+  }
+
+  .cart-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+  }
+
+  .cart-close {
+    background: none; border: none; cursor: pointer;
+    color: var(--cream); font-size: 1.3rem;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    transition: color 0.2s;
+  }
+  .cart-close:hover { color: var(--warm); }
+
+  .cart-items { flex: 1; padding: 1.5rem 2rem; }
+
+  .cart-empty {
+    text-align: center; padding: 4rem 2rem;
+    color: var(--muted); font-size: 0.8rem;
+    line-height: 2;
+  }
+  .cart-empty .empty-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
+
+  .cart-item {
+    display: grid; grid-template-columns: 64px 1fr auto;
+    gap: 1rem; align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--light);
+  }
+
+  .cart-item img {
+    width: 64px; height: 64px; object-fit: cover;
+    display: block;
+  }
+
+  .cart-item-info .ci-artist {
+    font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--warm); margin-bottom: 0.2rem;
+  }
+
+  .cart-item-info .ci-album {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem; font-weight: 700;
+    line-height: 1.2; margin-bottom: 0.3rem;
+  }
+
+  .cart-item-info .ci-price {
+    font-size: 0.72rem; color: var(--muted);
+  }
+
+  .cart-remove {
+    background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: 1.1rem;
+    padding: 0.3rem; transition: color 0.2s;
+    align-self: start;
+  }
+  .cart-remove:hover { color: var(--accent); }
+
+  .cart-footer {
+    background: var(--ink); padding: 1.5rem 2rem;
+    position: sticky; bottom: 0;
+  }
+
+  .cart-pricing { margin-bottom: 1.25rem; }
+
+  .cart-pricing-row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.72rem; color: #9A8E7A;
+    padding: 0.3rem 0;
+  }
+
+  .cart-pricing-row.total {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--cream); border-top: 1px solid #2C2018;
+    margin-top: 0.5rem; padding-top: 0.75rem;
+  }
+
+  .promo-badge {
+    background: var(--accent); color: var(--cream);
+    font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.2rem 0.5rem; margin-left: 0.5rem;
+  }
+
+  .cart-wa-btn {
+    display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+    background: #25D366; color: #fff;
+    border: none; cursor: pointer; width: 100%;
+    padding: 1rem; font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .cart-wa-btn:hover { background: #1ebe59; }
+
+  .btn-add-cart {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--warm); color: var(--ink);
+    border: none; cursor: pointer; width: 100%;
+    padding: 0.75rem 1.5rem; margin-top: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: background 0.2s; justify-content: center;
+  }
+  .btn-add-cart:hover { background: #D9B87F; }
+  .btn-add-cart.added { background: #4CAF50; color: #fff; }
+
+  @media (max-width: 900px) {
+    .cart-panel { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Vinyl<span>Groove</span></div>
+  <nav>
+    <a href="#catalogue">Catalogue</a>
+    <a href="#featured">Coups de cœur</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:1.5rem;">
+    <div class="header-contact">Abidjan, CI</div>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Panier
+      <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Collection de vinyles · Abidjan</p>
+    <h1>Le son<em>authentique</em>du vinyle</h1>
+    <p class="hero-sub">Des disques soigneusement sélectionnés — soul, jazz, afrobeat, funk & classiques du monde entier. Chaque vinyl raconte une histoire.</p>
+    <a href="#catalogue" class="btn-primary">Voir le catalogue</a>
+  </div>
+  <div class="hero-visual">
+    <div class="vinyl-glow"></div>
+    <div class="vinyl-disc"></div>
+  </div>
+</section>
+
+<!-- GENRES -->
+<div class="genres-section">
+  <button class="genre-btn active" onclick="filterGenre(this, 'all')">Tous</button>
+  <button class="genre-btn" onclick="filterGenre(this, 'jazz')">Jazz</button>
+  <button class="genre-btn" onclick="filterGenre(this, 'soul')">Soul & R&B</button>
+  <button class="genre-btn" onclick="filterGenre(this, 'variété française')">variété française</button>
+  <button class="genre-btn" onclick="filterGenre(this, 'funk')">Funk</button>
+  <button class="genre-btn" onclick="filterGenre(this, 'rock')">Rock</button>
+  <button class="genre-btn" onclick="filterGenre(this, 'classical')">Classique</button>
+  <button class="genre-btn" onclick="filterGenre(this, 'pop')">pop</button>
+  <button class="genre-btn" onclick="filterGenre(this, 'folk rock')">folk rock</button>
+  <button class="genre-btn" onclick="filterGenre(this, 'humour')">humour</button>
+  <button class="genre-btn" onclick="filterGenre(this, 'folk')">folk</button>
+ <button class="genre-btn" onclick="filterGenre(this, 'soundtrack')">soundtrack</button>
+  <button class="genre-btn" onclick="filterGenre(this, 'electronic')">electronic</button>
+
+</div>
+
+<!-- CATALOGUE -->
+<section class="catalogue" id="catalogue">
+  <div class="section-header">
+    <h2>Catalogue</h2>
+    <span class="count" id="count-label">12 disques disponibles</span>
+  </div>
+  <div class="vinyl-grid" id="vinyl-grid">
+    <!-- Cards injected by JS -->
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured" id="featured">
+  <div class="section-header">
+    <h2>Coup de cœur</h2>
+    <span class="count">Pièce rare</span>
+  </div>
+  <div class="featured-card">
+    <div class="featured-img">
+      <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=700&q=80" alt="Featured vinyl">
+    </div>
+    <div class="featured-content">
+      <h1>🎵 Prix & Offres</h1>
+      <p class="featured-desc"> 
+Prix unitaire : 4 000 FCFA par disque.
+Vous achetez plusieurs genres différents (plus de 2) ? Profitez d'un tarif spécial à 2 000 FCFA par disque !
+Pour plus d'informations ou pour passer commande, 
+contactez-moi directement sur WhatsApp au numéro indiqué sur la page. 📲</p>
+      
+      
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT & CONTACT -->
+<section class="about" id="contact">
+  <div class="about-text">
+    <h2>Une passion, une collection</h2>
+    <p>Chaque disque dans ma collection a été trouvé avec soin — marchés, collections privées, voyages. Je vends uniquement ce que j'aime, et tout est authentifié et évalué honnêtement.</p>
+    <p>L'état de chaque vinyle est indiqué avec précision : Mint (M), Very Good+ (VG+), Very Good (VG) ou Good+ (G+). Pas de mauvaises surprises.</p>
+    <p>Je livre dans tout Abidjan ou vous pouvez venir écouter sur place avant d'acheter.</p>
+  </div>
+  <div class="about-contact">
+    <h3>Me contacter</h3>
+    <div class="contact-item">
+      <span class="contact-label">WhatsApp</span>
+      <a class="contact-value" href="https://wa.me/2250799099456">+225 07 99 09 94 56</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Instagram</span>
+      <a class="contact-value" href="#">@vinylgroove_abidjan</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Email</span>
+      <a class="contact-value" href="mailto:contact@vinylgroove.ci">contact@vinylgroove.ci</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Localisation</span>
+      <span class="contact-value">Abidjan, Côte d'Ivoire</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Vinyl<span>Groove</span></div>
+  <p>© 2025 VinylGroove Abidjan · Collection privée</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-img"><img id="modal-img" src="" alt=""></div>
+    <div class="modal-content">
+      <p class="modal-artist" id="modal-artist"></p>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <div class="modal-meta">
+        <span id="modal-year"></span>
+        <span id="modal-genre"></span>
+        <span id="modal-condition"></span>
+      </div>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-price" id="modal-price"></div>
+      <button class="btn-contact" id="modal-contact">Contacter pour ce disque →</button>
+      <button class="btn-add-cart" id="modal-add-cart">+ Ajouter au panier</button>
+    </div>
+  </div>
+</div>
+
+<!-- PANIER -->
+<div class="cart-overlay" id="cart-overlay" onclick="handleCartOverlayClick(event)">
+  <div class="cart-panel" id="cart-panel">
+    <div class="cart-header">
+      <h3>🛒 Mon Panier</h3>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <div class="cart-empty">
+        <span class="empty-icon">🎵</span>
+        Votre panier est vide.<br>Ajoutez des disques depuis le catalogue !
+      </div>
+    </div>
+    <div class="cart-footer" id="cart-footer" style="display:none;">
+      <div class="cart-pricing" id="cart-pricing"></div>
+      <button class="cart-wa-btn" onclick="sendCartToWhatsApp()">
+        📲 Commander via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const vinyls = [
+  {
+  artist: "Percy Sledge",
+  album: "The Best Of Percy Sledge",
+  year: "1980",
+  genre: "soul",
+  label: "Atlantic Records / WEA (That's Soul Series)",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "Pressage européen de la série 'That's Soul' (WEA, 1980). Compilation des grands classiques : When a Man Loves a Woman, Warm and Tender Love, Take Time to Know Her. Pochette en bon état, vinyle propre.",
+  img: "img/a (1).JPG"
+},
+  {
+  artist: "Robert Schumann",
+  album: "Frühlings-Symphonie Nr.1 / Symphonie Nr.4",
+  year: "1977",
+  genre: "classical",
+  label: "Deutsche Grammophon",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "Daniel Barenboim dirige le Chicago Symphony Orchestra. Pressage Deutsche Grammophon (réf. 2530 660). Pochette avec légères traces d'usure, vinyle en bon état.",
+  img: "img/a (2).JPG"
+},
+  {
+  artist: "Dvořák / Tschaikowsky",
+  album: "Cellokonzert h-moll / Rokoko-Variationen",
+  year: "1969",
+  genre: "classical",
+  label: "Deutsche Grammophon",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "Enregistrement légendaire avec Mstislav Rostropowitsch au violoncelle et Herbert von Karajan à la tête des Berliner Philharmoniker. Parution originale 1969, récompensée de nombreux prix internationaux.",
+  img: "img/a (3).JPG"
+},
+  {
+  artist: "Beethoven – Karl Böhm / Wiener Philharmoniker",
+  album: "Sinfonie Nr. 3 Es-dur Eroica",
+  year: "1972",
+  genre: "classical",
+  label: "Deutsche Grammophon",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "Karl Böhm dirige les Wiener Philharmoniker dans l'une des références discographiques de l'Eroica. Pressage Deutsche Grammophon. Pochette avec légère usure aux coins.",
+  img: "img/a (4).JPG"
+},
+ {
+  artist: "The Famous Rangers / Jimmy Stevens",
+  album: "Western Parade – Les Plus Célèbres Thèmes de Films et Feuilletons T.V.",
+  year: "1972",
+  genre: "soundtrack",
+  label: "Mondio Music (Stereo Gold Award)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "Compilation des plus grands thèmes western : Bonanza, Le Bon la Brute et le Truand, Les Sept Mercenaires, Le Virginien, Maverick Theme... Pochette correcte, vinyle jouable.",
+  img: "img/a (6).JPG"
+},
+  {
+  artist: "Various Artists",
+  album: "Le Disque d'Or des Années 60",
+  year: "1974",
+  genre: "pop",
+  label: "Mr. Pickwick (Pickwick France)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "Compilation de hits des années 60 : Vince Taylor, Marino Marini, Billy Bridge, Gastone Parigi... Rock, samba, cha-cha, madison et biguine au programme. Enregistrements originaux.",
+  img: "img/a (5).JPG"
+},
+  {
+  artist: "Jacques Bodoin",
+  album: "La Table de Multiplication",
+  year: "1978",
+  genre: "humour",
+  label: "Musidisc",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Humour",
+  desc: "Sketches cultes du comique français Jacques Bodoin : La Table de Multiplication, La Leçon d'Anglais, La B.A., Le Sens des Affaires, La Tribune des Journalistes. Pressage Musidisc France.",
+  img: "img/a (7).JPG"
+},
+ {
+  artist: "New Orleans Feetwarmers",
+  album: "10e Anniversaire de l'Orchestre 1967–1977",
+  year: "1977",
+  genre: "jazz",
+  label: "Autoproduit (Genève)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Live",
+  desc: "Enregistrement live réalisé à l'occasion du 10e anniversaire de l'orchestre genevois (1967–1977). Jazz New Orleans authentique, pressage indépendant suisse. Pochette avec usure en coins.",
+  img: "img/a (8).JPG"
+},
+  {
+  artist: "Pinchas Zukerman",
+  album: "Schallplatten-Debüt – Mendelssohn & Tschaikowsky Violinkonzerte",
+  year: "1969",
+  genre: "classical",
+  label: "CBS",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "Disque de débuts du violoniste Pinchas Zukerman. Mendelssohn avec Bernstein / New York Philharmoniker, Tschaikowsky avec Antal Dorati / London Symphony Orchestra. Pochette avec légère usure.",
+  img: "img/a (9).JPG"
+},
+ {
+  artist: "Michel Sardou",
+  album: "Chanteur de Jazz",
+  year: "1985",
+  genre: "variété française",
+  label: "Tréma / Ariola",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Variété",
+  desc: "Album studio de Michel Sardou sorti en 1985 (réf. 310 211). Contient notamment le titre éponyme 'Chanteur de Jazz'. Pochette avec légère usure.",
+  img: "img/a (10).JPG"
+},
+  {
+  artist: "Franz Weber et son Orchestre Viennois",
+  album: "Sur les Bords du Danube",
+  year: "1960",
+  genre: "classical",
+  label: "Bel Air (Collection Paris)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Valses",
+  desc: "Valses et mélodies viennoises : La Veuve Joyeuse, Le Comte de Luxembourg, L'Or et l'Argent, Les Patineurs... Pressage français Bel Air, mono/stéréo compatible. Pochette avec usure visible.",
+  img: "img/a (11).JPG"
+},
+  {
+  artist: "Léo Ferré",
+  album: "Verlaine et Rimbaud chantés par Léo Ferré",
+  year: "1964",
+  genre: "variété française",
+  label: "Barclay",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Rare",
+  desc: "Double album historique — premier double album studio de l'histoire de la chanson française. Léo Ferré met en musique les poèmes de Verlaine et Rimbaud. Enregistré en mai 1964 aux Studios Barclay (réf. 80 236/37).",
+  img: "img/a (12).JPG"
+},
+{
+  artist: "Aimé Doniat / Daniel Marty",
+  album: "Chantons Noël",
+  year: "1965",
+  genre: "classical",
+  label: "Musidisc",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Noël",
+  desc: "Chants de Noël interprétés par Aimé Doniat et Daniel Marty avec la Maîtrise de la Cathédrale de Nuremberg et les Cloches de la Cathédrale de Trèves. Minuit Chrétiens, Ave Maria (Gounod & Schubert), Douce Nuit...",
+  img: "img/a (13).JPG"
+},
+{
+  artist: "Louis Armstrong",
+  album: "The Great Louis Armstrong – 70e Anniversaire",
+  year: "1971",
+  genre: "jazz",
+  label: "Musidisc (Collection Variété)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Jazz",
+  desc: "Compilation hommage pour les 70 ans de Satchmo (réf. 30 CV 1079). Swing et jazz classique par l'une des plus grandes légendes de la musique mondiale. Pochette avec usure en haut.",
+  img: "img/a (14).JPG"
+},
+{
+  artist: "Les Humphries Singers & Orchestra",
+  album: "Sound '73",
+  year: "1973",
+  genre: "pop",
+  label: "Decca",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Pop",
+  desc: "Album pop/soul du groupe allemand Les Humphries Singers, pressage Decca 1973 (réf. SLK 17 000-P). Mélange de pop, soul et schlager très populaire en Europe dans les années 70. Pochette avec usure.",
+  img: "img/a (15).JPG"
+},
+{
+  artist: "Peter Tschaikowsky – Karajan / Berliner Philharmoniker",
+  album: "Symphonie Nr. 4 F-moll Op. 36",
+  year: "1967",
+  genre: "classical",
+  label: "Deutsche Grammophon",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "Enregistrement de référence de la 4e Symphonie de Tchaïkovski par Herbert von Karajan et les Berliner Philharmoniker. Pressage Deutsche Grammophon (réf. 139 017), enregistré en octobre 1966.",
+  img: "img/a (16).JPG"
+},
+{
+  artist: "Adriano Celentano",
+  album: "18 Successi",
+  year: "1976",
+  genre: "pop",
+  label: "Joker (SM 3154)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "Compilation de 18 grands succès du roi du rock italien Adriano Celentano. Pressage Joker, Italie. Pochette légèrement usée.",
+  img: "img/a (24).JPG"
+},
+{
+  artist: "Various Artists",
+  album: "Golden Hitparade – 12 Smash Hits",
+  year: "1970",
+  genre: "pop",
+  label: "Decca",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "12 hits incontournables : Moody Blues, Little Richard, Shocking Blue (Venus), Lulu & Luvers (Shout), The Fortunes, Jerry Lee Lewis, Chris Montez, Them (Gloria)... Pressage Decca stéréo.",
+  img: "img/a (17).JPG"
+},
+{
+  artist: "Demis Roussos",
+  album: "Universum",
+  year: "1979",
+  genre: "pop",
+  label: "Philips",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Variété",
+  desc: "10 chansons en français dont 'Chantez Enfants du Monde' et 'Loin des Yeux Loin du Cœur'. Pressage Philips. Pochette en bon état.",
+  img: "img/a (18).JPG"
+},
+{
+  artist: "Space",
+  album: "Deliverance",
+  year: "1977",
+  genre: "electronic",
+  label: "Vogue",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Space Disco",
+  desc: "Premier album du groupe français Space, pionnier du space disco et de l'électro. Pressage original France Vogue (réf. LDA 20317). Contient Prison, Running In The City, Air Force. Pochette gatefold.",
+  img: "img/a (19).JPG"
+},
+{
+  artist: "Marie Laforêt",
+  album: "Les Vendanges de l'Amour / Viens sur la Montagne",
+  year: "1967",
+  genre: "variété française",
+  label: "Musidisc",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Variété",
+  desc: "Compilation des grands classiques de Marie Laforêt dont 'Les Vendanges de l'Amour' et 'Viens sur la Montagne'. Pressage Musidisc France (réf. 30 CV 1312).",
+  img: "img/a (20).JPG"
+},
+{
+  artist: "Ray Cool Orchestra / The Sounds and Co",
+  album: "Discothèque N°5",
+  year: "1975",
+  genre: "pop",
+  label: "Concert Hall",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "Versions dansantes des grands hits : Pour un Flirt, Here's to You, Les Rois Mages, Non Non Rien n'a Changé, Oh Ma Jolie Sarah... Pressage Concert Hall France.",
+  img: "img/a (21).JPG"
+},
+{
+  artist: "Simon and Garfunkel",
+  album: "Simon and Garfunkel's Greatest Hits",
+  year: "1972",
+  genre: "folk rock",
+  label: "CBS",
+  condition: "G",
+  condClass: "cond-g",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "Compilation des plus grands classiques : Bridge Over Troubled Water, The Sound of Silence, Mrs. Robinson, The Boxer, Scarborough Fair, Cecilia... Pochette très abîmée (déchirure importante), vinyle à vérifier.",
+  img: "img/a (22).JPG"
+},
+{
+  artist: "Les Chœurs de l'Armée Soviétique",
+  album: "À Paris",
+  year: "1961",
+  genre: "classical",
+  label: "Le Chant du Monde (LDX 74 260)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Rare",
+  desc: "Enregistrement live à Paris sous la direction de Boris Alexandrov. Grand Prix National du Disque 1961. Chants et danses de l'armée soviétique, pressage original Le Chant du Monde.",
+  img: "img/a (23).JPG"
+},
+{
+  artist: "Sari Barabas",
+  album: "Pearls of Hungary",
+  year: "1967",
+  genre: "folk",
+  label: "APON (APON-2750)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "World",
+  desc: "Chants folkloriques hongrois interprétés par la soprano Sari Barabas. Pressage APON Stereo Record. Pochette avec légère usure.",
+  img: "img/a (32).JPG"
+},
+{
+  artist: "Marie Laforêt",
+  album: "Ses Plus Grands Succès Vol. 2",
+  year: "1972",
+  genre: "variété française",
+  label: "Musidisc (Collection Or)",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Variété",
+  desc: "Compilation des plus grands succès de Marie Laforêt : Les Vendanges de l'Amour, Viens sur la Montagne, Mon Amour Mon Ami, Le Lit de Lola, Sébastien... Pressage Musidisc Collection Or.",
+  img: "img/a (31).JPG"
+},
+{
+  artist: "Fernand Raynaud",
+  album: "Les Chansons de Fernand Raynaud",
+  year: "1973",
+  genre: "humour",
+  label: "Impact (6371 130)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Humour",
+  desc: "Les classiques comiques de Fernand Raynaud : Un Clair de Lune à Maubeuge, Le Professeur de Gymnastique, Les Jolies Colonies de Vacances, Avec l'Ami Bidasse... Pressage Impact France.",
+  img: "img/a (30).JPG"
+},
+{
+  artist: "Dvořák – Bruno Walter / Columbia Symphony Orchestra",
+  album: "Aus der Neuen Welt – Sinfonie Nr. 9 e-moll",
+  year: "1961",
+  genre: "classical",
+  label: "CBS (Meister Konzert)",
+  condition: "G",
+  condClass: "cond-g",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "La légendaire 9e Symphonie de Dvořák dirigée par Bruno Walter. Enregistrement CBS de référence. Pochette très abîmée (importantes déchirures), vinyle à vérifier.",
+  img: "img/a (29).JPG"
+},
+{
+  artist: "Finis Henderson",
+  album: "Finis",
+  year: "1983",
+  genre: "soul",
+  label: "Motown",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Soul",
+  desc: "Album soul/R&B de Finis Henderson, artiste Motown. Contient le hit 'Skip to My Lou'. Pochette légèrement usée.",
+  img: "img/a (28).JPG"
+},
+{
+  artist: "Ry Cooder",
+  album: "Bop Till You Drop",
+  year: "1979",
+  genre: "rock",
+  label: "Warner Bros. Records",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Rare",
+  desc: "Premier album majeur enregistré en numérique (3-M multi-track digital). Roots rock, R&B et soul par le guitariste légendaire Ry Cooder. Contient Little Sister, Go Home Girl, I Can't Win.",
+  img: "img/a (27).JPG"
+},
+{
+  artist: "Various Artists",
+  album: "Good Morning America – Great Folk-Songs and Ballads",
+  year: "1975",
+  genre: "folk rock",
+  label: "K-tel",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "Grands classiques folk américains en originaux : Arlo Guthrie, Leonard Cohen (Suzanne), Scott McKenzie, The Byrds, Joan Baez, Cat Stevens (Father and Son), Don McLean (American Pie)... Pressage suisse K-tel.",
+  img: "img/a (26).JPG"
+},
+{
+  artist: "Mario Cavallo et son orchestre",
+  album: "Hit Parade Chante",
+  year: "1977",
+  genre: "pop",
+  label: "Impact",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "Versions orchestrées des grands hits : Manureva, Ma Gueule, Bécassine, Il Faut Danser Reggae, Spacer, Chanson d'Émilie Jolie... Pressage français Impact.",
+  img: "img/a (25).JPG"
+},
+{
+  artist: "Raymond Ruer et son Orchestre",
+  album: "Discothèque N°8",
+  year: "1973",
+  genre: "pop",
+  label: "Concert Hall (SPS 1363)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "Versions orchestrées des hits : C'est ma Prière, Fais comme l'Oiseau, You're So Vain, Le Lac Majeur, Mexico, Le Lundi au Soleil... Pressage Concert Hall France.",
+  img: "img/a (33).JPG"
+},
+{
+  artist: "Loose Ends",
+  album: "Emergency 999",
+  year: "1984",
+  genre: "soul",
+  label: "MCA Records",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Soul",
+  desc: "Single/maxi soul-funk du groupe britannique Loose Ends. Pressage UK MCA. Pochette avec étiquette HMV et légère usure.",
+  img: "img/a (36).JPG"
+},
+
+{
+  artist: "Ravel – André Cluytens / Société des Concerts du Conservatoire",
+  album: "L'Œuvre pour Orchestre – Album 1 (Boléro, La Valse, Rapsodie Espagnole)",
+  year: "1961",
+  genre: "classical",
+  label: "Columbia",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "Enregistrement de référence du Boléro, La Valse et la Rapsodie Espagnole de Ravel par André Cluytens. Pressage Columbia France stéréo. Pochette avec usure.",
+  img: "img/a (37).JPG"
+},
+{
+ artist: "Bach – Perlman, Zukerman / English Chamber Orchestra / Barenboim",
+  album: "Violinkonzerte (d-moll, E-dur, g-moll)",
+  year: "1975",
+  genre: "classical",
+  label: "Ex Libris",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "Trois concertos pour violon de Bach par le duo légendaire Itzhak Perlman et Pinchas Zukerman, avec le English Chamber Orchestra dirigé par Daniel Barenboim. Pressage Ex Libris.",
+  img: "img/a (38).JPG"
+},
+{
+  artist: "Josquin Desprez – Prager Madrigalisten",
+  album: "Missa Pange Lingua",
+  year: "1973",
+  genre: "classical",
+  label: "Telefunken (Das Alte Werk)",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Rare",
+  desc: "Messe Renaissance de Josquin Desprez interprétée par les Prager Madrigalisten. Série Das Alte Werk (Telefunken), référence pour la musique ancienne. Pochette en très bon état.",
+  img: "img/a (39).JPG"
+},
+{
+ artist: "Léo Ferré",
+  album: "Ludwig / L'Imaginaire / Le Bateau Ivre (Vol. 1-2-3)",
+  year: "1983",
+  genre: "variété française",
+  label: "RCA (PL 37582)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Rare",
+  desc: "Triple album de Léo Ferré regroupant Ludwig (vol.1), L'Imaginaire (vol.2) et Le Bateau Ivre (vol.3), mise en musique du poème de Rimbaud. Pressage RCA France.",
+  img: "img/a (40).JPG"
+},
+{
+  artist: "James Last",
+  album: "Non Stop Dancing 11",
+  year: "1971",
+  genre: "pop",
+  label: "Polydor (2371 111)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Dancing",
+  desc: "28 hits en version dansante : In The Summertime, El Condor Pasa, Lola, Cecilia, A Song of Joy, Yellow River, Greensleeves... Pressage Polydor Allemagne.",
+  img: "img/a (41).JPG"
+},
+{
+  artist: "Jacques Offenbach – Jane Rhodes / Manuel Rosenthal",
+  album: "La Belle Hélène",
+  year: "1960",
+  genre: "classical",
+  label: "Philips (835 483 LY)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Opéra",
+  desc: "Opérette d'Offenbach avec Jane Rhodes dans le rôle-titre, Bernard Plantey, Jean Giraudeau. Direction Manuel Rosenthal. Pressage Philips Hi-Fi Stéréo, collection Disques-Spectacle.",
+  img: "img/a (42).JPG"
+},
+{
+
+  artist: "Tino Rossi",
+  album: "Tino Rossi (Double Album)",
+  year: "1978",
+  genre: "variété française",
+  label: "Music Melody / MFP (Pathé Marconi)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Double LP",
+  desc: "Double album 24 titres : Chantons l'Amour, La Dernière Valse, Ah ! Le Petit Vin Blanc, Les Lilas Blancs, La Chapelle au Clair de Lune, Love Story... Pressage Pathé Marconi EMI. Pochette avec légère déchirure.",
+  img: "img/a (43).JPG"
+},
+{
+ artist: "W.A. Mozart – Jean-Pierre Rampal / Wiener Symphoniker",
+  album: "Les Deux Concertos pour Flûte (KV 313, 314 & Andante KV 315)",
+  year: "1973",
+  genre: "classical",
+  label: "Erato (STU 70330)",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "Les deux concertos pour flûte de Mozart par Jean-Pierre Rampal avec le Wiener Symphoniker dirigé par Theodor Guschlbauer. Pressage Erato Gravure Universelle. Pochette en très bon état.",
+  
+  img: "img/a (44).JPG"
+},
+{
+  artist: "Marie Laforêt",
+  album: "Viens Viens... / L'Amour comme à 16 ans (2 Disques)",
+  year: "1974",
+  genre: "variété française",
+  label: "Polydor (2664 314)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Double LP",
+  desc: "Double album Polydor avec les grands succès de Marie Laforêt : Viens Viens, L'Amour comme à 16 ans, Cadeau, Mais Je T'Aime... Pochette avec légère usure.",
+  
+  img: "img/a (45).JPG"
+},
+{
+ artist: "Cerrone",
+  album: "Cerrone 3 – Supernature",
+  year: "1977",
+  genre: "electronic",
+  label: "Malligator",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Disco",
+  desc: "Troisième album du pionnier français du disco-électro Cerrone. Contient le classique Supernature, hymne du mouvement disco européen. Pressage original Malligator France.",
+  
+  img: "img/a (46).JPG"
+},
+{
+ artist: "Various Artists",
+  album: "Le Rire du Sergent",
+  year: "1972",
+  genre: "pop",
+  label: "Les Tréteaux (LR 5064)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Live",
+  desc: "Album live avec versions françaises des hits : Il Fait Beau Il Fait Bon, Jésus Christo, Till, Maggie May. Pressage Les Tréteaux France. Photo de scène avec foule immense.",
+  
+  img: "img/a (47).JPG"
+},
+{
+ artist: "The Hollywood Sound Stage Orchestra",
+  album: "The Romantic Moods of Strangers In The Night",
+  year: "1966",
+  genre: "easy listening",
+  label: "Guest Star Records",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Easy Listening",
+  desc: "Mélodies romantiques orchestrées inspirées du hit de Sinatra. The Hollywood Sound Stage Orchestra propose un voyage musical feutré pour moments intimes. Pochette avec légère usure.",
+  
+  img: "img/a (48).JPG"
+},
+{
+ artist: "Junior",
+  album: "Ji",
+  year: "1982",
+  genre: "soul",
+  label: "London Records",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Soul",
+  desc: "Album soul/R&B du chanteur britannique Junior (Giscombe). Contient le hit 'Mama Used to Say'. Pressage UK London Records. Pochette avec étiquette HMV.",
+  
+  img: "img/a (49).JPG"
+},
+{
+  artist: "Various Artists",
+  album: "Living With The Blues",
+  year: "1962",
+  genre: "blues",
+  label: "Musidisc (30 CV 955)",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Blues",
+  desc: "Compilation blues authentique avec John Lee Hooker, Brownie McGhee, Memphis Minnie, Sunnyland Slim, Papa Lightfoot... Pressage Musidisc France, mono. Pochette en bon état.",
+  
+  img: "img/a (50).JPG"
+},
+{
+  artist: "Various Artists",
+  album: "Amusez-Vous !",
+  year: "1980",
+  genre: "humour",
+  label: "Carrère",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Humour",
+  desc: "Compilation humoristique avec Maurice Chevalier, Suzy Delair, Andrex, Simone Langlois, Dominique Tirmont, Rogers, Robert Piquet, Annie Gould. Sketches et chansons comiques.",
+  
+  img: "img/a (51).JPG"
+},
+{
+ artist: "Serge Lama",
+  album: "Je Suis Malade",
+  year: "1973",
+  genre: "variété française",
+  label: "Philips (6325 020)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Variété",
+  desc: "Album culte de Serge Lama contenant Je Suis Malade, Les P'tites Femmes de Pigalle, La Fronde, Les Glycines, Mariages d'un Jour... Pressage Philips France. Pochette avec scotch.",
+  
+  img: "img/a (52).JPG"
+},
+{
+artist: "Various Artists",
+  album: "Visit To Venus",
+  year: "1970",
+  genre: "pop",
+  label: "Iris Records (15026)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "Compilation pop psychédélique américaine sur Iris Records. Pochette illustrée psyché avec déesse de Vénus. Pressage US stéréo.",
+   
+  img: "img/a (53).JPG"
+},
+{
+  artist: "Blues Company",
+  album: "Down On The Corner",
+  year: "1971",
+  genre: "blues",
+  label: "Mercury",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Blues Rock",
+  desc: "Album blues rock incluant Fortunate Son, Bad Moon Rising, Suzie Q, Green River, Born On The Bayou, Proud Mary... Reprises CCR en version blues. Pressage Mercury.",
+  
+  img: "img/a (54).JPG"
+},
+{
+  artist: "Blues Company",
+  album: "Down On The Corner",
+  year: "1971",
+  genre: "blues",
+  label: "Mercury",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Blues Rock",
+  desc: "Album blues rock incluant Fortunate Son, Bad Moon Rising, Suzie Q, Green River, Born On The Bayou, Proud Mary... Reprises CCR en version blues. Pressage Mercury.",
+  
+  img: "img/a (55).JPG"
+},
+{
+ artist: "Raymond Ruer et son Orchestre",
+  album: "Discothèque N°9",
+  year: "1974",
+  genre: "pop",
+  label: "Concert Hall (SPS 1399)",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "Versions orchestrées des hits : La Maladie d'Amour, Soul Makossa, Can The Can, Good-Bye My Love, Corps Contre Corps, J'ai un Problème... Pressage Concert Hall France.",
+  
+  img: "img/a (57).JPG"
+},
+{
+ artist: "Hawaiian Troubadours",
+  album: "Sweet Hawaiian Memories",
+  year: "1970",
+  genre: "folk",
+  label: "Contour",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "World",
+  desc: "Mélodies hawaïennes traditionnelles : Aloha Oe, On The Beach At Waikiki, Nuits de Manakoora, El Condor Pasa, Song of the Islands... Pressage Contour UK. Pochette légèrement usée.",
+  img: "img/a (58).JPG"
+},
+{
+ artist: "Vivaldi – Neville Marriner / Academy of St. Martin-in-the-Fields",
+  album: "Die vier Jahreszeiten (Les Quatre Saisons)",
+  year: "1970",
+  genre: "classical",
+  label: "Decca",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "L'enregistrement de référence des Quatre Saisons de Vivaldi par Neville Marriner et l'Academy of St. Martin-in-the-Fields. Pressage Decca. Pochette en très bon état.",
+  
+  img: "img/a (59).JPG"
+},
+{
+  artist: "Ray Conniff",
+  album: "The Best Of Ray Conniff",
+  year: "1974",
+  genre: "easy listening",
+  label: "CBS (Club Edition)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Compilation",
+  desc: "Compilation des plus grands arrangements de Ray Conniff : Tie A Yellow Ribbon, The Godfather (Speak Softly Love), Rose Garden, Alone Again, Clair, Ben, Song Sung Blue... Pressage CBS Club Edition.",
+  
+  img: "img/a (60).JPG"
+},
+{
+  artist: "Marion Williams",
+  album: "I Believe",
+  year: "1983",
+  genre: "gospel",
+  label: "RCA (PL 37178)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Gospel",
+  desc: "Album gospel de la grande voix américaine Marion Williams, pionnière du gospel soul. Pressage RCA France. Pochette en bon état.",
+  
+  img: "img/a (61).JPG"
+},
+{
+  artist: "Yello",
+  album: "Vicious Games / Blue Nabou",
+  year: "1985",
+  genre: "electronic",
+  label: "Elektra (EKR 1T)",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Maxi 12\"",
+  desc: "Maxi 12\" du duo électro suisse Yello. Contient Vicious Games (6:50), Vicious Games instrumental (4:12) et Blue Nabou (3:19). Encore sous cellophane d'origine. État quasi-neuf.",
+  
+  img: "img/a (62).JPG"
+},
+{
+  artist: "Various Artists",
+  album: "Ruthless People (Original Motion Picture Soundtrack)",
+  year: "1986",
+  genre: "pop",
+  label: "Epic",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Soundtrack",
+  desc: "BO du film Touchstone avec Mick Jagger, Billy Joel (Modern Woman), Luther Vandross, Bruce Springsteen (Stand On It), Kool & The Gang, Paul Young. Pressage Epic 1986.",
+  
+  img: "img/a (63).JPG"
+},
+{
+ artist: "Space Art",
+  album: "Space Art",
+  year: "1977",
+  genre: "electronic",
+  label: "Ariola",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Space Synth",
+  desc: "Premier album du duo français Space Art, pionnier de la musique électronique/space synth. Contient le classique Trip in the Center Head. Pressage Ariola France.",
+  
+  img: "img/a (64).JPG"
+},
+{
+  
+  img: "img/a (65).JPG"
+},
+{
+  artist: "Los Indios",
+  album: "La Flûte Indienne – El Condor Pasa",
+  year: "1975",
+  genre: "folk",
+  label: "Carabine (16148 GH)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "World",
+  desc: "Musique andine traditionnelle à la flûte de pan par Los Indios. Contient la célèbre version de El Condor Pasa. Pressage Carabine France.",
+  
+  img: "img/a (66).JPG"
+},
+{
+  artist: "Mendelssohn-Bartholdy – Rafael Kubelik / Bayerischer Rundfunk",
+  album: "Ein Sommernachtstraum (Le Songe d'une Nuit d'Été)",
+  year: "1965",
+  genre: "classical",
+  label: "Deutsche Grammophon (138 959)",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "Le Songe d'une Nuit d'Été de Mendelssohn par Rafael Kubelik et le Chor und Sinfonie-Orchester des Bayerischen Rundfunks. Pressage DG stéréo. Pochette en très bon état.",
+  
+  img: "img/a (67).JPG"
+},
+{
+  artist: "Beethoven – Karl Böhm / Wiener Philharmoniker",
+  album: "Sinfonie Nr. 6 F-dur Pastorale",
+  year: "1971",
+  genre: "classical",
+  label: "Deutsche Grammophon",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "La Pastorale de Beethoven par Karl Böhm et les Wiener Philharmoniker. Pressage Deutsche Grammophon. Pochette quasi-neuve, encore sous plastique.",
+  
+  img: "img/a (68).JPG"
+},
+{
+ artist: "Beethoven – Karl Böhm / Wiener Philharmoniker",
+  album: "Sinfonie Nr. 7 A-dur",
+  year: "1971",
+  genre: "classical",
+  label: "Deutsche Grammophon",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "La 7e Symphonie de Beethoven par Karl Böhm et les Wiener Philharmoniker. Pressage Deutsche Grammophon. Pochette avec légère usure en coin.",
+  
+  img: "img/a (69).JPG"
+},
+{
+ artist: "Carl Maria von Weber – Herbert von Karajan / Berliner Philharmoniker",
+  album: "Ouvertüren / Overtures",
+  year: "1973",
+  genre: "classical",
+  label: "Deutsche Grammophon (2530 315)",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "Ouvertures de Carl Maria von Weber par Karajan et les Berliner Philharmoniker. Pressage DG stéréo (réf. 2530 315). Pochette en très bon état.",
+  
+  img: "img/a (70).JPG"
+},
+{
+ artist: "Mozart / Reinecke – Zöller, Zabaleta / Berliner Philharmoniker",
+  album: "Konzert für Flöte und Harfe / Konzert für Harfe",
+  year: "1963",
+  genre: "classical",
+  label: "Deutsche Grammophon (138 853)",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "Concerto pour flûte et harpe de Mozart (Zöller / Zabaleta) couplé avec le Concerto pour harpe de Reinecke. Berliner Philharmoniker, dir. Ernst Märzendorfer. Pressage DG stéréo.",
+  
+  img: "img/a (71).JPG"
+},
+{
+  artist: "Louis Armstrong",
+  album: "L'Unique",
+  year: "1973",
+  genre: "jazz",
+  label: "Mr. Pickwick (MPD 228)",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Jazz",
+  desc: "Enregistrements originaux de Satchmo : Muskrat Ramble, Basin Street Blues, St James Infirmary, Royal Garden Blues, Cabaret, Struttin' With Some Barbecue... Pressage Mr. Pickwick France.",
+  
+  img: "img/a (72).JPG"
+},
+{
+ artist: "Liszt / Smetana – Herbert von Karajan / Berliner Philharmoniker",
+  album: "Liszt: Les Préludes, Rhapsodie Nr.2 / Smetana: Vyšehrad, Die Moldau",
+  year: "1967",
+  genre: "classical",
+  label: "Deutsche Grammophon (139 037)",
+  condition: "VG+",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Classique",
+  desc: "Les Préludes et Rhapsodie Hongroise N°2 de Liszt + Vyšehrad et La Moldau de Smetana par Karajan et les Berliner Philharmoniker. Pressage DG stéréo.",
+  
+  img: "img/a (73).JPG"
+},
+{
+ artist: "Josquin Desprez – University of Illinois Chamber Choir / George Hunter",
+  album: "Missa Ave Maris Stella / Four Motets",
+  year: "1966",
+  genre: "classical",
+  label: "Nonesuch",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Rare",
+  desc: "Missa Ave Maris Stella et quatre motets de Josquin Desprez par le University of Illinois Chamber Choir dirigé par George Hunter. Pressage Nonesuch US. Pochette légèrement usée.",
+  
+  img: "img/a (74).JPG"
+},
+{
+  artist: "Ray Parker Jr.",
+  album: "Ghostbusters (Extended) / Maxi-Single",
+  year: "1984",
+  genre: "pop",
+  label: "Arista",
+  condition: "VG",
+  condClass: "cond-vg",
+  price: "4 000 FCFA",
+  badge: "Maxi 45t",
+  desc: "Maxi-single 45t de la BO du film Ghostbusters. Version extended du N°1 américain de Ray Parker Jr. Pochette avec inscription manuscrite.",
+  
+  img: "img/a (75).JPG"
+},
+];
+
+let currentFilter = 'all';
+let cart = [];
+let currentModalIndex = null;
+
+/* ── GRILLE ── */
+function renderGrid(filter) {
+  const grid = document.getElementById('vinyl-grid');
+  const label = document.getElementById('count-label');
+  const filtered = filter === 'all' ? vinyls : vinyls.filter(v => v.genre === filter);
+  label.textContent = `${filtered.length} disque${filtered.length > 1 ? 's' : ''} disponible${filtered.length > 1 ? 's' : ''}`;
+
+  grid.innerHTML = filtered.map((v, i) => `
+    <div class="vinyl-card" onclick="openModal(${vinyls.indexOf(v)})">
+      <div class="card-img-wrap">
+        ${v.badge ? `<span class="card-badge">${v.badge}</span>` : ''}
+        <img src="${v.img}" alt="${v.album}" loading="lazy">
+        <div class="quick-action">Voir le disque</div>
+      </div>
+      <div class="card-info">
+        <p class="artist">${v.artist}</p>
+        <p class="album">${v.album}</p>
+        <div class="meta">
+          <span class="condition"><span class="condition-dot ${v.condClass}"></span>${v.condition}</span>
+          <span>${v.year}</span>
+          <span class="price">${v.price}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterGenre(btn, genre) {
+  document.querySelectorAll('.genre-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = genre;
+  renderGrid(genre);
+}
+
+/* ── MODAL ── */
+function openModal(index) {
+  currentModalIndex = index;
+  const v = vinyls[index];
+  document.getElementById('modal-img').src = v.img;
+  document.getElementById('modal-artist').textContent = v.artist;
+  document.getElementById('modal-title').textContent = v.album;
+  document.getElementById('modal-year').textContent = `Année : ${v.year}`;
+  document.getElementById('modal-genre').textContent = `Label : ${v.label}`;
+  document.getElementById('modal-condition').textContent = `État : ${v.condition}`;
+  document.getElementById('modal-desc').textContent = v.desc;
+  document.getElementById('modal-price').textContent = v.price;
+  document.getElementById('modal-contact').onclick = () => openContact(`${v.album} - ${v.artist}`);
+
+  const addBtn = document.getElementById('modal-add-cart');
+  const alreadyIn = cart.some(c => c.index === index);
+  addBtn.textContent = alreadyIn ? '✓ Dans le panier' : '+ Ajouter au panier';
+  addBtn.classList.toggle('added', alreadyIn);
+  addBtn.onclick = () => addToCart(index);
+
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal') || e.currentTarget.classList.contains('modal-close')) {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+function openContact(disc) {
+  const msg = encodeURIComponent(`Bonjour, je suis intéressé(e) par le vinyle : ${disc}. Pouvez-vous me donner plus d'informations ?`);
+  window.open(`https://wa.me/2250799099456?text=${msg}`, '_blank');
+}
+
+/* ── PANIER ── */
+function addToCart(index) {
+  if (cart.some(c => c.index === index)) return;
+  cart.push({ index, vinyl: vinyls[index] });
+  updateCartUI();
+
+  const addBtn = document.getElementById('modal-add-cart');
+  if (addBtn) {
+    addBtn.textContent = '✓ Dans le panier';
+    addBtn.classList.add('added');
+  }
+}
+
+function removeFromCart(index) {
+  cart = cart.filter(c => c.index !== index);
+  updateCartUI();
+
+  if (currentModalIndex === index) {
+    const addBtn = document.getElementById('modal-add-cart');
+    if (addBtn) {
+      addBtn.textContent = '+ Ajouter au panier';
+      addBtn.classList.remove('added');
+    }
+  }
+}
+
+function calcTotal() {
+  const n = cart.length;
+  if (n === 0) return { lines: [], total: 0, hasPromo: false };
+
+  const UNIT = 4000;
+  const PROMO = 2000;
+
+  if (n <= 2) {
+    return {
+      lines: [{ label: `${n} disque${n>1?'s':''} × 4 000 FCFA`, amount: n * UNIT }],
+      total: n * UNIT,
+      hasPromo: false
+    };
+  }
+
+  return {
+    lines: [
+      { label: `${n} disques × 2 000 FCFA`, amount: n * PROMO, promo: true },
+    ],
+    total: n * PROMO,
+    hasPromo: true
+  };
+}
+
+function updateCartUI() {
+  const countEl = document.getElementById('cart-count');
+  countEl.textContent = cart.length;
+
+  const itemsEl = document.getElementById('cart-items');
+  const footerEl = document.getElementById('cart-footer');
+  const pricingEl = document.getElementById('cart-pricing');
+
+  if (cart.length === 0) {
+    itemsEl.innerHTML = `
+      <div class="cart-empty">
+        <span class="empty-icon">🎵</span>
+        Votre panier est vide.<br>Ajoutez des disques depuis le catalogue !
+      </div>`;
+    footerEl.style.display = 'none';
+    return;
+  }
+
+  itemsEl.innerHTML = cart.map(({ index, vinyl: v }) => `
+    <div class="cart-item">
+      <img src="${v.img}" alt="${v.album}">
+      <div class="cart-item-info">
+        <p class="ci-artist">${v.artist}</p>
+        <p class="ci-album">${v.album}</p>
+        <p class="ci-price">${v.year} · ${v.condition}</p>
+      </div>
+      <button class="cart-remove" onclick="removeFromCart(${index})" title="Retirer">✕</button>
+    </div>
+  `).join('');
+
+  const { lines, total, hasPromo } = calcTotal();
+
+  pricingEl.innerHTML = lines.map(l => `
+    <div class="cart-pricing-row">
+      <span>${l.label}${l.promo ? `<span class="promo-badge">Promo</span>` : ''}</span>
+      <span>${l.amount !== null ? l.amount.toLocaleString('fr-FR') + ' FCFA' : ''}</span>
+    </div>
+  `).join('') + `
+    <div class="cart-pricing-row total">
+      <span>Total</span>
+      <span>${total.toLocaleString('fr-FR')} FCFA</span>
+    </div>
+    ${hasPromo ? `<div style="font-size:0.62rem;color:#9A8E7A;margin-top:0.5rem;">✓ Tarif spécial appliqué : 2 000 FCFA / disque (+ de 2 disques)</div>` : `<div style="font-size:0.62rem;color:#9A8E7A;margin-top:0.5rem;">💡 Prenez plus de 2 disques pour bénéficier du tarif à 2 000 FCFA/disque !</div>`}
+  `;
+
+  footerEl.style.display = 'block';
+}
+
+function openCart() {
+  document.getElementById('cart-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleCartOverlayClick(e) {
+  if (e.target === document.getElementById('cart-overlay')) closeCart();
+}
+
+function sendCartToWhatsApp() {
+  if (cart.length === 0) return;
+  const { total, hasPromo } = calcTotal();
+
+  const liste = cart.map((c, i) => `${i+1}. ${c.vinyl.album} — ${c.vinyl.artist}`).join('\n');
+  const promo = hasPromo ? '\n🎉 Tarif spécial multi-genres appliqué (2 000 FCFA/disque)' : '';
+  const msg = encodeURIComponent(
+    `Bonjour ! Je voudrais commander ces ${cart.length} vinyle(s) :\n\n${liste}\n\nTotal : ${total.toLocaleString('fr-FR')} FCFA${promo}\n\nMerci !`
+  );
+  window.open(`https://wa.me/2250799099456?text=${msg}`, '_blank');
+}
+
+renderGrid('all');
+</script>
+</body>
+</html>
